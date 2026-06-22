@@ -1,5 +1,14 @@
 {
   "manifest_version": 2,
   "name": "Hover Deutsch",
-  "version": "0.0.0"
+  "version": "0.0.0",
+
+  "description": "Translates and searches the definition of a word in German and displays it when hovering.",
+
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["hoverDeutsch.js"]
+    }
+  ]
 }
