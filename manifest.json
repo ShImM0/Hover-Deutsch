@@ -10,5 +10,7 @@
       "matches": ["*://*/*"],
       "js": ["hoverDeutsch.js"]
     }
-  ]
+  ],
+
+  "permissions": ["activeTab"]
 }

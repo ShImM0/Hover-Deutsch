@@ -1,7 +1,15 @@
 
 // Initialise variables
 let word;
+let toolTipText;
 
+document.addEventListener("mousemove", process);
+
+function process(e) {
+  getWord(e);
+  //getMeaningOfWord(word);
+  //displayToolTipText(toolTipText);
+}
 /*
  *  The caretPositionFromPoint() method returns an object, containing the DOM node, the caret and caret's character offset within the node
  *  The caretRangeFromPoint() method does a similar thing
@@ -24,8 +32,8 @@ function getWord(e) {
 
   if (textNode?.nodeType === 3) {
     // Only if the type of the node is text (.nodeType == 3)
-    word = textNode;
-    console.log('Parsed: ${word}');
+    word = textNode.textContent;
+    console.log(`Parsed: ${word}`);
   }
 }
 
@@ -36,5 +44,4 @@ function getMeaningOfWord(word) {
 function displayToolTipText(toolTipText) {
 
 }
-
 
