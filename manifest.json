@@ -7,7 +7,7 @@
 
   "content_scripts": [
     {
-      "matches": ["*://*/*"],
+      "matches": ["<all_urls>"],
       "js": ["hoverDeutsch.js"]
     }
   ],

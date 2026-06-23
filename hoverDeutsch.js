@@ -1,4 +1,5 @@
-
+console.log("HoverDeutsch cargado");
+alert("HoverDeutsch alerta de carga");
 // Initialise variables
 let word;
 let toolTipText;
@@ -14,16 +15,22 @@ function process(e) {
  *  The caretPositionFromPoint() method returns an object, containing the DOM node, the caret and caret's character offset within the node
  *  The caretRangeFromPoint() method does a similar thing
  */
+
+
 function getWord(e) {
   let range;
   let textNode;
 
   if (document.caretPositionFromPoint) {
     range = document.caretPositionFromPoint(e.clientX, e.clientY);
+    
+    if (!range) return;
     textNode = range.offsetNode;
   }
   else if (document.caretRangeFromPoint) {
     range = document.caretRangeFromPoint(e.clientX, e.clientY);
+
+    if (!range) return;
     textNode = range.startContainer;
   }
   else {
@@ -34,6 +41,9 @@ function getWord(e) {
     // Only if the type of the node is text (.nodeType == 3)
     word = textNode.textContent;
     console.log(`Parsed: ${word}`);
+  }
+  else {
+    console.log("no es texto");
   }
 }
 
