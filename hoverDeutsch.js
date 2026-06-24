@@ -13,14 +13,17 @@ async function process(e) {
     console.log(word);
     lastWord = word;
     try {
-      const germanInfo = await getMeaningOfWord(word);
-      console.log(germanInfo);
+      const germanInfo = await browser.runtime.sendMessage({
+        type: "lookup",
+        word
+      });
+      //await getMeaningOfWord(word);
+      console.log("RESULT: ", germanInfo);
     } catch (err) {
-      console.error(err);
+      console.error("MESSAGE ERROR", err);
     }
 
   }
-  //getMeaningOfWord(word);
   //displayToolTipText(toolTipText);
 }
 /*
