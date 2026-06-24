@@ -5,12 +5,20 @@ let toolTipText;
 
 document.addEventListener("mousemove", process);
 
-function process(e) {
+async function process(e) {
   const word = getWord(e);
 
-  if (word !== undefined && word != lastWord){
+  if (word !== undefined && word !== lastWord) {
+
     console.log(word);
     lastWord = word;
+    try {
+      const germanInfo = await getMeaningOfWord(word);
+      console.log(germanInfo);
+    } catch (err) {
+      console.error(err);
+    }
+
   }
   //getMeaningOfWord(word);
   //displayToolTipText(toolTipText);
@@ -22,7 +30,7 @@ function process(e) {
 
 
 function getWord(e) {
-  
+
   let range;
   let textNode;
   let offset;
@@ -46,37 +54,49 @@ function getWord(e) {
   }
 
   if (textNode?.nodeType !== Node.TEXT_NODE) return;
-    // Only if the type of the node is text (.nodeType == 3)
+  // Only if the type of the node is text (.nodeType == 3)
 
-    const text = textNode.textContent;
-   
+  const text = textNode.textContent;
 
-    // /\p{L}/u recognizes any letter
-    // If current letter is undefined or not a letter or is blank, return
-    if (!text[offset] || !/\p{L}/u.test(text[offset])) { 
-      return;
-    }
 
-     let start = offset;
-    let end = offset;
+  // /\p{L}/u recognizes any letter
+  // If current letter is undefined or not a letter or is blank, return
+  if (!text[offset] || !/\p{L}/u.test(text[offset])) {
+    return;
+  }
 
-    // Correct the indices for proper delimitation
-    while (start > 0 && /\p{L}/u.test(text[start - 1])) {
-      start--;
-    }
+  let start = offset;
+  let end = offset;
 
-    while (end < text.length && /\p{L}/u.test(text[end])) {
-      end++;
-    }
+  // Correct the indices for proper delimitation
+  while (start > 0 && /\p{L}/u.test(text[start - 1])) {
+    start--;
+  }
 
-    // Remove blank spaces after the start and the end
-    return text.slice(start, end);
+  while (end < text.length && /\p{L}/u.test(text[end])) {
+    end++;
+  }
 
-}
-
-function getMeaningOfWord(word) {
+  // Remove blank spaces after the start and the end
+  return text.slice(start, end);
 
 }
+
+
+async function getMeaningOfWord(word) {
+  const response = await fetch(
+    "https://api.pons.com/v1/dictionary?q=Haus&l=deen&in=de",
+    {
+      headers: {
+        "X-Secret": "1443ad5671f44b1a72e1ecd9b4a51f22ec36792c72626e9735d5d9c583c5b11e"
+      }
+    }
+  );
+
+  const data = await response.json();
+  console.log(data);
+}
+
 
 function displayToolTipText(toolTipText) {
 
