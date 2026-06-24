@@ -5,6 +5,10 @@ let toolTipText;
 
 document.addEventListener("mousemove", process);
 
+
+/*
+ * Asynchronous function because await is used
+*/
 async function process(e) {
   const word = getWord(e);
 
@@ -13,11 +17,9 @@ async function process(e) {
     console.log(word);
     lastWord = word;
     try {
-      const germanInfo = await browser.runtime.sendMessage({
-        type: "lookup",
-        word
-      });
-      //await getMeaningOfWord(word);
+      // The background script has a Message Listener (browser.runtime.onMessage.addListener())
+      const germanInfo = await getMeaningOfWord(word);
+
       console.log("RESULT: ", germanInfo);
     } catch (err) {
       console.error("MESSAGE ERROR", err);
@@ -87,17 +89,13 @@ function getWord(e) {
 
 
 async function getMeaningOfWord(word) {
-  const response = await fetch(
-    "https://api.pons.com/v1/dictionary?q=Haus&l=deen&in=de",
-    {
-      headers: {
-        "X-Secret": "1443ad5671f44b1a72e1ecd9b4a51f22ec36792c72626e9735d5d9c583c5b11e"
-      }
-    }
-  );
+  if(!word) return;
+  const germanInfo = await browser.runtime.sendMessage({
+        type: "lookup",
+        word
+      });
 
-  const data = await response.json();
-  console.log(data);
+      return germanInfo;
 }
 
 
