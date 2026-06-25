@@ -1,10 +1,19 @@
 
 // Initialise variables
 let lastWord = "";
-let toolTipText;
+let tooltip = document.createElement("div");
+tooltip.style.position = "absolute";
+tooltip.style.background = "red";
+tooltip.style.color = "#ffffff";
+tooltip.style.padding = "6px";
+tooltip.style.borderRadius = "5px";
+tooltip.style.fontSize = "12px";
+tooltip.style.pointerEvents = "none";
+tooltip.style.zIndex = "999999";
+tooltip.style.display = "none";
+document.body.appendChild(tooltip);
 
 document.addEventListener("mousemove", process);
-
 
 /*
  * Asynchronous function because await is used
@@ -20,11 +29,16 @@ async function process(e) {
       // The background script has a Message Listener (browser.runtime.onMessage.addListener())
       const germanInfo = await getMeaningOfWord(word);
 
+      //buildTooltipText
+      displayTooltipText(germanInfo, e.clientX, e.clientY);
       console.log("RESULT: ", germanInfo);
     } catch (err) {
       console.error("MESSAGE ERROR", err);
     }
 
+  }
+  else {
+    tooltip.style.display = "none";
   }
   //displayToolTipText(toolTipText);
 }
@@ -89,17 +103,23 @@ function getWord(e) {
 
 
 async function getMeaningOfWord(word) {
-  if(!word) return;
+  if (!word) return;
   const germanInfo = await browser.runtime.sendMessage({
-        type: "lookup",
-        word
-      });
+    type: "lookup",
+    word
+  });
 
-      return germanInfo;
+  return germanInfo;
 }
 
 
-function displayToolTipText(toolTipText) {
+function displayTooltipText(toolTipText, x, y) {
+  tooltip.textContent = JSON.stringify(toolTipText);
 
+  tooltip.style.left= x + 10+"px";
+  tooltip.style.top = y + 10+"px";
+
+  tooltip.style.display = "block";
 }
+
 
