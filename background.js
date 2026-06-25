@@ -20,9 +20,8 @@ browser.runtime.onMessage.addListener(async (msg) => {
 
     console.log("STATUS:", res.status);
 
-    // Response as a string
-    const text = await res.text(); //comprobar .json
-    console.log("RAW RESPONSE:", text);
+    // Response as a json
+    const text = await res.json();
 
     if (!res.ok) {
       return {
@@ -32,7 +31,8 @@ browser.runtime.onMessage.addListener(async (msg) => {
       };
     }
 
-    return JSON.parse(text);
+    const parsed = parseQuery(text);
+    return parsed;
 
   } catch (err) {
     console.error("FETCH FAILED:", err);
@@ -44,3 +44,38 @@ browser.runtime.onMessage.addListener(async (msg) => {
     };
   }
 });
+
+function parseQuery(response) {
+  let result = [];
+  for (const languageDir of response) {
+    let translations = [];
+    let entries = [];
+    for (const hit of languageDir.hits) {
+      switch (hit.type) {
+        case "entry":
+          entries.push(parseEntry(hit));
+          break;
+
+        case "translation":
+          translations.push(parseTranslation(hit));
+          break;
+      }
+    }
+    result.push({
+      lang: languageDir.lang,
+      entries,
+      translations
+    });
+  }
+  return result;
+}
+
+
+function parseEntry(hitEntry) {
+  return hitEntry;
+
+}
+
+function parseTranslation(hitTranslation) {
+  return hitTranslation;
+}
