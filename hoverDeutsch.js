@@ -1,6 +1,7 @@
 
 // Initialise variables
 let lastWord = "";
+let hideTimeout = null;
 let tooltip = document.createElement("div");
 tooltip.style.position = "absolute";
 tooltip.style.background = "red";
@@ -21,26 +22,33 @@ document.addEventListener("mousemove", process);
 async function process(e) {
   const word = getWord(e);
 
-  if (word !== undefined && word !== lastWord) {
+  if (!word){
+    clearTimeout(hideTimeout);
+    hideTimeout = setTimeout(() => {
+      tooltip.style.display = "none";
+    }, 200);
+    return;
+  }
+
+  if(word === lastWord) return;
 
     console.log(word);
     lastWord = word;
+
     try {
       // The background script has a Message Listener (browser.runtime.onMessage.addListener())
       const germanInfo = await getMeaningOfWord(word);
 
-      //buildTooltipText
       displayTooltipText(germanInfo, e.clientX, e.clientY);
-      console.log("RESULT: ", germanInfo);
+
+      //console.log("RESULT: ", germanInfo);
+
     } catch (err) {
       console.error("MESSAGE ERROR", err);
     }
 
-  }
-  else {
-    tooltip.style.display = "none";
-  }
-  //displayToolTipText(toolTipText);
+  
+
 }
 /*
  *  The caretPositionFromPoint() method returns an object, containing the DOM node, the caret and caret's character offset within the node
@@ -116,8 +124,8 @@ async function getMeaningOfWord(word) {
 function displayTooltipText(toolTipText, x, y) {
   tooltip.textContent = JSON.stringify(toolTipText);
 
-  tooltip.style.left= x + 10+"px";
-  tooltip.style.top = y + 10+"px";
+  tooltip.style.left = x + 10 + "px";
+  tooltip.style.top = y + 10 + "px";
 
   tooltip.style.display = "block";
 }
