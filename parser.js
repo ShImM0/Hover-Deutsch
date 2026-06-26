@@ -51,11 +51,16 @@ function printEntry(hitEntry) {
 }
 
 
-
+/* Replaces span of class "collocator" to be wrapped in parenthesis
+* (.*?) captures the content of the span
+* "($1)" uses the previous capturaed content to substitute
+*/
 function clean(text = "") {
   return text
+    .replace(/\s*<span[^>]*class="collocator"[^>]*>(.*?)<\/span>/gi, " ($1)")
     .replace(/<[^>]*>/g, "") // elimina etiquetas HTML
     .replace(/&#39;/g, "'")  // decodifica entidades comunes
+    .replace(/\s*\n\s*/g, " ")
     .trim();
 }
 
