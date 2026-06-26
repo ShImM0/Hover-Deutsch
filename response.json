@@ -1,0 +1,200 @@
+[
+  {
+    "lang": "de",
+    "hits": [
+      {
+        "type": "entry",
+        "opendict": false,
+        "roms": [
+          {
+            "headword": "Gel·te",
+            "headword_full": "Gel<span class=\"separator\">·<\/span>te <span class=\"flexion\">&lt;-, -n&gt;<\/span> <span class=\"phonetics\">[ˈgɛltə]<\/span> <span class=\"wordclass\"><acronym title=\"noun\">N<\/acronym><\/span> <span class=\"genus\"><acronym title=\"feminine\">f<\/acronym><\/span> <span class=\"region\"><acronym title=\"Swiss\" class=\"schweiz\">CH<\/acronym><\/span> <span class=\"sense\">(Bütte)<\/span>",
+            "wordclass": "noun",
+            "arabs": [
+              {
+                "header": "",
+                "translations": [
+                  {
+                    "source": "<strong class=\"headword\">Gelte<\/strong>",
+                    "target": "vat"
+                  },
+                  {
+                    "source": "<strong class=\"headword\">Gelte<\/strong>",
+                    "target": "tub"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "entry",
+        "opendict": false,
+        "roms": [
+          {
+            "headword": "gel·ten",
+            "headword_full": "gel<span class=\"separator\">·<\/span>ten <span class=\"flexion\">&lt;gilt, galt, gegolten&gt;<\/span> <span class=\"phonetics\">[ˈgɛltn̩]<\/span> <span class=\"wordclass\"><acronym title=\"verb\">VB<\/acronym><\/span> <span class=\"verbclass\"><acronym title=\"intransitive verb\">intr<\/acronym><\/span>",
+            "wordclass": "intransitive verb",
+            "arabs": [
+              {
+                "header": "1. gelten <span class=\"sense\">(gültig sein)<\/span>:",
+                "translations": [
+                  {
+                    "source": "<span class=\"grammatical_construction\">[für <acronym title=\"jemanden\">jdn<\/acronym>] <strong class=\"tilde\">gelten\n<\/strong> <\/span> <span class=\"collocator\">Regelung<\/span>",
+                    "target": "to be valid [for <acronym title=\"somebody\">sb<\/acronym>]"
+                  },
+                  {
+                    "source": "<span class=\"grammatical_construction\">[für <acronym title=\"jemanden\">jdn<\/acronym>] <strong class=\"tilde\">gelten\n<\/strong> <\/span> <span class=\"collocator\">Bestimmungen<\/span>",
+                    "target": "to apply [to <acronym title=\"somebody\">sb<\/acronym>]"
+                  },
+                  {
+                    "source": "<span class=\"grammatical_construction\">[für <acronym title=\"jemanden\">jdn<\/acronym>] <strong class=\"tilde\">gelten\n<\/strong> <\/span> <span class=\"collocator\">Gesetz<\/span>",
+                    "target": "to be in force"
+                  },
+                  {
+                    "source": "<span class=\"grammatical_construction\">[für <acronym title=\"jemanden\">jdn<\/acronym>] <strong class=\"tilde\">gelten\n<\/strong> <\/span> <span class=\"collocator\">Preis, Gebühr, Satz, Angebot<\/span>",
+                    "target": "to be effective"
+                  },
+                  {
+                    "source": "<span class=\"grammatical_construction\">[für <acronym title=\"jemanden\">jdn<\/acronym>] <strong class=\"tilde\">gelten\n<\/strong> <\/span> <span class=\"collocator\">Geld<\/span>",
+                    "target": "to be legal tender"
+                  },
+                  {
+                    "source": "<span class=\"full_collocation\">nicht mehr <strong class=\"tilde\">gelten\n<\/strong> <\/span>",
+                    "target": "to be no longer valid"
+                  }
+                ]
+              },
+              {
+                "header": "2. gelten <span class=\"sense\">(bestimmt sein für)<\/span>:",
+                "translations": [
+                  {
+                    "source": "<span class=\"grammatical_construction\"><acronym title=\"jemandem\">jdm<\/acronym>/<acronym title=\"etwas\">etw<\/acronym> <strong class=\"tilde\">gelten\n<\/strong> <\/span>",
+                    "target": "to be meant for <acronym title=\"somebody\">sb<\/acronym>/<acronym title=\"something\">sth<\/acronym>"
+                  },
+                  {
+                    "source": "<span class=\"grammatical_construction\"><acronym title=\"jemandem\">jdm<\/acronym>/<acronym title=\"etwas\">etw<\/acronym> <strong class=\"tilde\">gelten\n<\/strong> <\/span> <span class=\"collocator\">Buhrufe<\/span>",
+                    "target": "to be aimed at <acronym title=\"somebody\">sb<\/acronym>/<acronym title=\"something\">sth<\/acronym>"
+                  },
+                  {
+                    "source": "<span class=\"grammatical_construction\"><acronym title=\"jemandem\">jdm<\/acronym>/<acronym title=\"etwas\">etw<\/acronym> <strong class=\"tilde\">gelten\n<\/strong> <\/span> <span class=\"collocator\">Frage<\/span>",
+                    "target": "to be directed at <acronym title=\"somebody\">sb<\/acronym>"
+                  },
+                  {
+                    "source": "<span class=\"example\">der Applaus gilt dir!<\/span>",
+                    "target": "the applause is for you!"
+                  }
+                ]
+              },
+              {
+                "header": "3. gelten <span class=\"style\"><acronym title=\"formal language\">form<\/acronym><\/span> <span class=\"sense\">(betreffen)<\/span>:",
+                "translations": [
+                  {
+                    "source": "<span class=\"grammatical_construction\"><acronym title=\"jemandem\">jdm<\/acronym>/<acronym title=\"etwas\">etw<\/acronym> <strong class=\"tilde\">gelten\n<\/strong> <\/span>",
+                    "target": "to be for <acronym title=\"somebody\">sb<\/acronym>/<acronym title=\"something\">sth<\/acronym>"
+                  },
+                  {
+                    "source": "<span class=\"example\">seine ganze Liebe galt der Kunst<\/span>",
+                    "target": "art was his greatest love"
+                  }
+                ]
+              },
+              {
+                "header": "4. gelten <span class=\"sense\">(zutreffen)<\/span>:",
+                "translations": [
+                  {
+                    "source": "<span class=\"grammatical_construction\">für <acronym title=\"jemanden\">jdn<\/acronym> <strong class=\"tilde\">gelten\n<\/strong> <\/span>",
+                    "target": "to go <span class=\"target\">[<span class=\"or\"><acronym title=\"or\">or<\/acronym><\/span> hold]<\/span> for <acronym title=\"somebody\">sb<\/acronym>"
+                  },
+                  {
+                    "source": "<span class=\"example\">das gleiche gilt auch für mich<\/span>",
+                    "target": "the same goes for <span class=\"target\">[<span class=\"or\"><acronym title=\"or\">or<\/acronym><\/span> is true of]<\/span> me too"
+                  }
+                ]
+              },
+              {
+                "header": "5. gelten <span class=\"sense\">(gehalten werden)<\/span>:",
+                "translations": [
+                  {
+                    "source": "<span class=\"grammatical_construction\">als [<span class=\"or\"><acronym title=\"oder\">o.<\/acronym><\/span> <span class=\"restriction\"><acronym title=\"rare\">rare<\/acronym><\/span> für] <acronym title=\"etwas\">etw<\/acronym> <strong class=\"tilde\">gelten\n<\/strong> <\/span>",
+                    "target": "to be regarded as <acronym title=\"something\">sth<\/acronym>"
+                  },
+                  {
+                    "source": "<span class=\"example\">er gilt als absolut zuverlässig<\/span>",
+                    "target": "he is regarded as being absolutely reliable"
+                  }
+                ]
+              },
+              {
+                "header": "Phrases:",
+                "translations": [
+                  {
+                    "source": "<span class=\"idiom_proverb\"><acronym title=\"etwas\">etw<\/acronym> <strong class=\"tilde\">gelten<\/strong> lassen<\/span>",
+                    "target": "to accept <acronym title=\"something\">sth<\/acronym>"
+                  },
+                  {
+                    "source": "<span class=\"idiom_proverb\"><acronym title=\"etwas\">etw<\/acronym> <strong class=\"tilde\">gelten<\/strong> lassen<\/span>",
+                    "target": "to let <acronym title=\"something\">sth<\/acronym> stand"
+                  },
+                  {
+                    "source": "<span class=\"example\">für diesmal werde ich es ausnahmsweise <strong class=\"tilde\">gelten<\/strong> lassen<\/span>",
+                    "target": "I&#39;ll let it go this time"
+                  },
+                  {
+                    "source": "<span class=\"idiom_proverb\"><acronym title=\"etwas\">etw<\/acronym> nicht <strong class=\"tilde\">gelten<\/strong> lassen<\/span>",
+                    "target": "to disallow <acronym title=\"something\">sth<\/acronym>"
+                  },
+                  {
+                    "source": "<span class=\"idiom_proverb\"><acronym title=\"etwas\">etw<\/acronym> nicht <strong class=\"tilde\">gelten<\/strong> lassen<\/span>",
+                    "target": "to cease to apply"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "headword": "gel·ten",
+            "headword_full": "gel<span class=\"separator\">·<\/span>ten <span class=\"flexion\">&lt;gilt, galt, gegolten&gt;<\/span> <span class=\"phonetics\">[ˈgɛltn̩]<\/span> <span class=\"wordclass\"><acronym title=\"verb\">VB<\/acronym><\/span> <span class=\"verbclass\"><acronym title=\"intransitive verb\">intr<\/acronym><\/span> <span class=\"info\"><acronym title=\"impersonal verb\">impers<\/acronym><\/span> <span class=\"style\"><acronym title=\"formal language\">form<\/acronym><\/span>",
+            "wordclass": "intransitive verb",
+            "arabs": [
+              {
+                "header": "",
+                "translations": [
+                  {
+                    "source": "<span class=\"grammatical_construction\">es gilt, <acronym title=\"etwas\">etw<\/acronym> zu tun<\/span>",
+                    "target": "it is necessary to do <acronym title=\"something\">sth<\/acronym>"
+                  },
+                  {
+                    "source": "<span class=\"example\">jetzt gilt es zusammenzuhalten<\/span>",
+                    "target": "it is now a matter of sticking together"
+                  },
+                  {
+                    "source": "<span class=\"full_collocation\">es gilt!<\/span>",
+                    "target": "you&#39;re on!"
+                  },
+                  {
+                    "source": "<span class=\"full_collocation\">jetzt gilt&#39;s!<\/span>",
+                    "target": "this is it!"
+                  },
+                  {
+                    "source": "<span class=\"full_collocation\">das gilt nicht!<\/span>",
+                    "target": "that&#39;s not allowed!"
+                  },
+                  {
+                    "source": "<span class=\"full_collocation\">was gilt&#39;s?<\/span>",
+                    "target": "what shall we bet for?"
+                  },
+                  {
+                    "source": "<span class=\"full_collocation\">was gilt&#39;s?<\/span>",
+                    "target": "what do you bet?"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

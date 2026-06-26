@@ -1,14 +1,16 @@
 function parseQuery(response) {
   let result = [];
+  let resultString = "";
   for (const languageDir of response) {
-    console.log(`language: ${languageDir.lang}\n`);
-
+    resultString += (`language: ${languageDir.lang}\n`);
+  
     let translations = [];
     let entries = [];
     for (const hit of languageDir.hits) {
       switch (hit.type) {
         case "entry":
-          printEntry(hit);
+          const entry = parseEntry(hit);
+          resultString += entry;
           //entries.push(parseEntry(hit));
           break;
 
@@ -23,11 +25,12 @@ function parseQuery(response) {
       translations
     });
   }
+  console.log(resultString);
   return result;
 }
 
-// Print in format
-function printEntry(hitEntry) {
+// Formatted parsing
+function parseEntry(hitEntry) {
   let out = "";
 
   for (const rom of hitEntry.roms) {
@@ -39,17 +42,16 @@ function printEntry(hitEntry) {
       out += `       ${clean(arab.header)}\n`;
 
       for (const tr of arab.translations) {
-        out += `          - ${clean(tr.source)}\n`;
-        //out += `          - ${clean(tr.source)} -> ${clean(tr.target)}\n`;
+        //out += `          - ${clean(tr.source)}\n`;
+        out += `          - ${clean(tr.source)} -> ${clean(tr.target)}\n`;
       }
     }
 
     out += "\n";
   }
 
-  console.log(out);
+  return out;
 }
-
 
 /* Replaces span of class "collocator" to be wrapped in parenthesis
 * (.*?) captures the content of the span
@@ -72,8 +74,7 @@ function parseTranslation(hitTranslation) {
 
 module.exports = {
   parseQuery,
-  //parseEntry,
-  printEntry,
+  parseEntry,
   parseTranslation
 };
 
