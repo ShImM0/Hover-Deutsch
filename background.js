@@ -45,37 +45,3 @@ browser.runtime.onMessage.addListener(async (msg) => {
   }
 });
 
-function parseQuery(response) {
-  let result = [];
-  for (const languageDir of response) {
-    let translations = [];
-    let entries = [];
-    for (const hit of languageDir.hits) {
-      switch (hit.type) {
-        case "entry":
-          entries.push(parseEntry(hit));
-          break;
-
-        case "translation":
-          translations.push(parseTranslation(hit));
-          break;
-      }
-    }
-    result.push({
-      lang: languageDir.lang,
-      entries,
-      translations
-    });
-  }
-  return result;
-}
-
-
-function parseEntry(hitEntry) {
-  return hitEntry;
-
-}
-
-function parseTranslation(hitTranslation) {
-  return hitTranslation;
-}
