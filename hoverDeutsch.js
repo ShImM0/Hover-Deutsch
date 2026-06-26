@@ -12,6 +12,8 @@ tooltip.style.fontSize = "12px";
 tooltip.style.pointerEvents = "none";
 tooltip.style.zIndex = "999999";
 tooltip.style.display = "none";
+tooltip.style.width = "auto";
+tooltip.style.textAlign = "left";
 document.body.appendChild(tooltip);
 
 document.addEventListener("mousemove", process);
@@ -22,32 +24,32 @@ document.addEventListener("mousemove", process);
 async function process(e) {
   const word = getWord(e);
 
-  if (!word){
+  if (!word) {
     clearTimeout(hideTimeout);
     hideTimeout = setTimeout(() => {
       tooltip.style.display = "none";
-    }, 200);
+    }, 500);
     return;
   }
 
-  if(word === lastWord) return;
+  if (word === lastWord) return;
 
-    console.log(word);
-    lastWord = word;
+  console.log(word);
+  lastWord = word;
 
-    try {
-      // The background script has a Message Listener (browser.runtime.onMessage.addListener())
-      const germanInfo = await getMeaningOfWord(word);
+  try {
+    // The background script has a Message Listener (browser.runtime.onMessage.addListener())
+    const germanInfo = await getMeaningOfWord(word);
 
-      displayTooltipText(germanInfo, e.clientX, e.clientY);
+    displayTooltipText(germanInfo, e.clientX, e.clientY);
 
-      //console.log("RESULT: ", germanInfo);
+    //console.log("RESULT: ", germanInfo);
 
-    } catch (err) {
-      console.error("MESSAGE ERROR", err);
-    }
+  } catch (err) {
+    console.error("MESSAGE ERROR", err);
+  }
 
-  
+
 
 }
 /*
