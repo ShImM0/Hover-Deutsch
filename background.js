@@ -14,7 +14,7 @@ browser.runtime.onMessage.addListener(async (msg) => {
     // Sends and HTTP GET request to the API
     const res = await fetch(url, {
       headers: {
-        "X-Secret": "1443ad5671f44b1a72e1ecd9b4a51f22ec36792c72626e9735d5d9c583c5b11e"
+        "X-Secret": "YOUR API KEY"
       }
     });
 
@@ -46,7 +46,7 @@ browser.runtime.onMessage.addListener(async (msg) => {
 });
 
 function parseQuery(response) {
-  let result = [];
+  //let result = [];
   let resultString = "";
   for (const languageDir of response) {
     resultString += (`language: ${languageDir.lang}\n`);
@@ -58,19 +58,18 @@ function parseQuery(response) {
         case "entry":
           const entry = parseEntry(hit);
           resultString += entry;
-          //entries.push(parseEntry(hit));
           break;
 
-        case "translation":
+        /*case "translation":
           translations.push(parseTranslation(hit));
-          break;
+          break;*/
       }
     }
-    result.push({
+    /*result.push({
       lang: languageDir.lang,
       entries,
       translations
-    });
+    });*/
   }
   console.log(resultString);
   return resultString;
