@@ -21,6 +21,7 @@ document.addEventListener("mousemove", process);
 
 /*
  * Asynchronous function because await is used
+ * Detects word, sends the word the the background script, waits and displays the result in the tooltip
 */
 async function process(e) {
   const word = getWord(e);
@@ -56,10 +57,10 @@ async function process(e) {
   }
 }
 /*
+ *  Parses the word if it exists, removing the side blank spaces
  *  The caretPositionFromPoint() method returns an object, containing the DOM node, the caret and caret's character offset within the node
  *  The caretRangeFromPoint() method does a similar thing
  */
-
 
 function getWord(e) {
 
@@ -114,7 +115,10 @@ function getWord(e) {
 
 }
 
-
+/*
+* Sends the word to the background script using sendMessage and
+* waits for the result
+*/ 
 async function getMeaningOfWord(word) {
   if (!word) return;
   const germanInfo = await browser.runtime.sendMessage({
@@ -126,6 +130,9 @@ async function getMeaningOfWord(word) {
 }
 
 
+/*
+* Displays the result in the tooltip
+*/
 function displayTooltipText(toolTipText, x, y) {
   tooltip.textContent = toolTipText;
 

@@ -1,6 +1,7 @@
 /*
+ * Waits for the lookup request, and sends the request using fetch
  * API Query: Using parameter word, prepare URL with the correct header for request
- * 
+ * The response is a JSON, the result is the parsed string
  */
 browser.runtime.onMessage.addListener(async (msg) => {
   // Input with {type: "lookup", word: "word"}
@@ -45,6 +46,9 @@ browser.runtime.onMessage.addListener(async (msg) => {
   }
 });
 
+/*
+ * Returns the string in a YAML-like string, using clean()
+ */
 function parseQuery(response) {
   //let result = [];
   let resultString = "";
@@ -99,7 +103,7 @@ function parseEntry(hitEntry) {
   return out;
 }
 
-/* Replaces span of class "collocator" to be wrapped in parenthesis
+/* Removes the HTML tags, changing span of class "collocator" to be wrapped in parenthesis
 * (.*?) captures the content of the span
 * "($1)" uses the previous capturaed content to substitute
 */
