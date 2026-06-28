@@ -37,8 +37,8 @@ async function process(e) {
   // Cancel hiding the tooltip
   clearTimeout(hideTimeout);
 
-  if (word === lastWord){
-    tooltip.style.left = e.clientX+  "px";
+  if (word === lastWord) {
+    tooltip.style.left = e.clientX + "px";
     tooltip.style.top = e.clientY + "px";
     return;
   }
@@ -118,7 +118,7 @@ function getWord(e) {
 /*
 * Sends the word to the background script using sendMessage and
 * waits for the result
-*/ 
+*/
 async function getMeaningOfWord(word) {
   if (!word) return;
   const germanInfo = await browser.runtime.sendMessage({
