@@ -34,7 +34,7 @@
     pacman -S web-ext
     ```
 3. **Get a PONS API Key**
-    - Visit https://en.pons.com/p/online-dictionary/developers/api and generate an API key after making an account. Then, open your profile and copy the secret (first field in Show Secret).
+    - Visit [PONS Dictionary API](https://en.pons.com/p/online-dictionary/developers/api) and generate an API key after making an account. Then, open your profile and copy the secret (first field in Show Secret).
     - Replace the placeholder in `background.js`:  
 `"X-Secret": "YOUR API KEY"` with the key.
 
@@ -67,3 +67,7 @@ The free PONS API is limited to 1,000 requests per month, enough for several hou
 > ### background.js
 - A message listener waits for the lookup request, sends the request with `fetch()` using the API key and parses the response in JSON to a JavaScript object using `await res.json()`.
 - The function `parseQuery()` returns the string in a YAML-like string, and uses `clean()` to remove HTML tags.
+
+
+## More information
+For more information about extension development, read [Firefox's Extension Basics](https://extensionworkshop.com/extension-basics/) and [Firefox Extension Workshop](https://extensionworkshop.com/).
