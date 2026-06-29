@@ -24,3 +24,9 @@ body {
   height: 290px;
   background: rgb(240,240,240);
 }
+
+.plugin-config, .interface-config{
+  overflow: auto;
+  width: 95%;
+  margin: 0 auto;
+}
