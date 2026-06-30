@@ -6,44 +6,46 @@
 browser.runtime.onMessage.addListener(async (msg) => {
   // Input with {type: "lookup", word: "word"}
   if (msg.type !== "lookup") return;
+      // encodeURIComponent ensures special chars are safely encoded
+      const url = `https://api.pons.com/v1/dictionary?q=${encodeURIComponent(msg.word)}&l=deen&in=de`;
 
-  // encodeURIComponent ensures special chars are safely encoded
-  const url = `https://api.pons.com/v1/dictionary?q=${encodeURIComponent(msg.word)}&l=deen&in=de`;
+      try {
+        // res is the variable that contains the response from the API
+        // Sends and HTTP GET request to the API
+        const res = await fetch(url, {
+          headers: {
+            "X-Secret": "YOUR API KEY"
+          }
+        });
 
-  try {
-    // res is the variable that contains the response from the API
-    // Sends and HTTP GET request to the API
-    const res = await fetch(url, {
-      headers: {
-        "X-Secret": "YOUR API KEY"
+        console.log("STATUS:", res.status);
+
+        // Response as a json
+        const text = await res.json();
+
+        if (!res.ok) {
+          return {
+            error: true,
+            status: res.status,
+            body: text
+          };
+        }
+
+        const parsed = parseQuery(text);
+        return parsed;
+
+      } catch (err) {
+        console.error("FETCH FAILED:", err);
+
+        return {
+          error: true,
+          message: err.message,
+          stack: err.stack
+        };
       }
-    });
 
-    console.log("STATUS:", res.status);
 
-    // Response as a json
-    const text = await res.json();
 
-    if (!res.ok) {
-      return {
-        error: true,
-        status: res.status,
-        body: text
-      };
-    }
-
-    const parsed = parseQuery(text);
-    return parsed;
-
-  } catch (err) {
-    console.error("FETCH FAILED:", err);
-
-    return {
-      error: true,
-      message: err.message,
-      stack: err.stack
-    };
-  }
 });
 
 /*

@@ -2,13 +2,14 @@
 // Initialise variables
 let lastWord = "";
 let hideTimeout = null;
+
 let tooltip = document.createElement("div");
 tooltip.style.position = "fixed";
-tooltip.style.background = "#000000";
-tooltip.style.color = "#ffffff";
 tooltip.style.padding = "6px";
 tooltip.style.borderRadius = "5px";
 tooltip.style.fontSize = "15px";
+tooltip.style.background = "#000000";
+tooltip.style.color = "#ffffff";
 tooltip.style.pointerEvents = "none";
 tooltip.style.zIndex = "999999";
 tooltip.style.display = "none";
@@ -48,7 +49,8 @@ async function process(e) {
 
   try {
     // The background script has a Message Listener (browser.runtime.onMessage.addListener())
-    const germanInfo = await getMeaningOfWord(word);
+    const germanInfo = word + word;
+    await getMeaningOfWord(word);
 
     displayTooltipText(germanInfo, e.clientX, e.clientY);
 
@@ -144,3 +146,17 @@ function displayTooltipText(toolTipText, x, y) {
 }
 
 
+browser.runtime.onMessage.addListener((msg) => {
+  console.log("msg recibido", msg);
+  switch (msg.type) {
+    case "background-color":
+      tooltip.style.background = msg.color;
+      break;
+    case "font-color":
+      tooltip.style.color = msg.color;
+      break;
+
+    default:
+  }
+
+});

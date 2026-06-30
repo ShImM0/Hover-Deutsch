@@ -6,7 +6,7 @@
   "description": "Translates and searches the definition of a word in German and displays it when hovering.",
 
   "browser_action":{
-    "default_popup": "hoverDeutsch.html"
+    "default_popup": "popup.html"
   },
   "content_scripts": [
     {
