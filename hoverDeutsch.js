@@ -1,9 +1,4 @@
 
-/*browser.storage.onChanged.addListener((changes) => {
-  console.log("STORAGE EVENT:", changes);
-});
-*/
-
 // Initialise variables
 let lastWord = "";
 let hideTimeout = null;
@@ -26,13 +21,15 @@ document.body.appendChild(tooltip);
 document.addEventListener("mousemove", process);
 
 
-const settings = await browser.storage.local.get(["bcolor", "fcolor"]);
+(async () => {
+  const settings = await browser.storage.local.get(["bcolor", "fcolor"]);
 
-if (settings.bcolor)
-    tooltip.style.background = settings.bcolor;
+  if (settings.bcolor)
+      tooltip.style.background = settings.bcolor;
 
-if (settings.fcolor)
-    tooltip.style.color = settings.fcolor;
+  if (settings.fcolor)
+      tooltip.style.color = settings.fcolor;
+})();
 
 browser.storage.onChanged.addListener((changes) => {
     if (changes.bcolor)
@@ -41,6 +38,7 @@ browser.storage.onChanged.addListener((changes) => {
     if (changes.fcolor)
         tooltip.style.color = changes.fcolor.newValue;
 });
+
 
 /*
  * Asynchronous function because await is used
