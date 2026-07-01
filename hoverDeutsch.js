@@ -1,4 +1,9 @@
 
+/*browser.storage.onChanged.addListener((changes) => {
+  console.log("STORAGE EVENT:", changes);
+});
+*/
+
 // Initialise variables
 let lastWord = "";
 let hideTimeout = null;
@@ -19,6 +24,23 @@ tooltip.style.whiteSpace = "pre-wrap";
 document.body.appendChild(tooltip);
 
 document.addEventListener("mousemove", process);
+
+
+const settings = await browser.storage.local.get(["bcolor", "fcolor"]);
+
+if (settings.bcolor)
+    tooltip.style.background = settings.bcolor;
+
+if (settings.fcolor)
+    tooltip.style.color = settings.fcolor;
+
+browser.storage.onChanged.addListener((changes) => {
+    if (changes.bcolor)
+        tooltip.style.background = changes.bcolor.newValue;
+
+    if (changes.fcolor)
+        tooltip.style.color = changes.fcolor.newValue;
+});
 
 /*
  * Asynchronous function because await is used
@@ -50,7 +72,7 @@ async function process(e) {
   try {
     // The background script has a Message Listener (browser.runtime.onMessage.addListener())
     const germanInfo = word + word;
-    await getMeaningOfWord(word);
+    //await getMeaningOfWord(word);
 
     displayTooltipText(germanInfo, e.clientX, e.clientY);
 
@@ -145,18 +167,3 @@ function displayTooltipText(toolTipText, x, y) {
   tooltip.style.display = "block";
 }
 
-
-browser.runtime.onMessage.addListener((msg) => {
-  console.log("msg recibido", msg);
-  switch (msg.type) {
-    case "background-color":
-      tooltip.style.background = msg.color;
-      break;
-    case "font-color":
-      tooltip.style.color = msg.color;
-      break;
-
-    default:
-  }
-
-});

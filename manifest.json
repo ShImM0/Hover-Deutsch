@@ -15,7 +15,11 @@
     }
   ],
 
+  "options_ui":{
+    "page": "options.html",
+    "open_in_tab":true
+  },
   "background" : {
     "scripts":["background.js"]},
-  "permissions": ["activeTab", "https://api.pons.com/*"]
+  "permissions": ["activeTab", "https://api.pons.com/*", "storage"]
 }
