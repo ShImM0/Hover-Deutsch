@@ -3,7 +3,7 @@
   "name": "Hover Deutsch",
   "version": "1.1.0",
 
-  "description": "Translates and searches the definition of a word in German and displays it when hovering.",
+  "description": "Translates and searches the definition of a word in German and displays it when hovering or clicking.",
 
   "browser_action":{
     "default_popup": "popup.html"

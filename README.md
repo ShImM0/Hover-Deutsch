@@ -1,6 +1,6 @@
 # Hover-Deutsch
 
-**Hover-Deutsch** is a Firefox add-on that displays the definitions and translations of German word simply by hovering over them. This information is retrieved from the PONS Dictionary API and displayed in a tooltip.
+**Hover-Deutsch** is a Firefox add-on that displays the definitions and translations of German word simply by hovering over them, or by clicking. This information is retrieved from the PONS Dictionary API and displayed in a tooltip.
 
 ## Table of Contents
  

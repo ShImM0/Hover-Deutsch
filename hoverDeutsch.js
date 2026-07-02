@@ -6,6 +6,8 @@ let translations = false;
 let delay = 500;
 let detectionMode = "hover";
 
+// Tooltip element
+
 let tooltip = document.createElement("div");
 tooltip.style.position = "fixed";
 tooltip.style.padding = "6px";
@@ -20,8 +22,6 @@ tooltip.style.width = "auto";
 tooltip.style.textAlign = "left";
 tooltip.style.whiteSpace = "pre-wrap";
 document.body.appendChild(tooltip);
-
-//document.addEventListener("mousemove", process);
 
 function setDetectionMode(mode){
   document.removeEventListener("mousemove", process);
@@ -38,6 +38,9 @@ function setDetectionMode(mode){
 }
 
 setDetectionMode("hover");
+
+
+// Load stored settings and keepy syncronized
 
 (async () => {
   const settings = await browser.storage.local.get(["bcolor", "fcolor", "translations", "delay", "detection"]);
