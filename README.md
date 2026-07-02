@@ -1,12 +1,27 @@
 # Hover-Deutsch
-**Hover-Deutsch** is a Firefox add-on that displays the definitions and translations of German word by simply hovering over them. This information is retrieved from the PONS Dictionary API and displayed in a tooltip.
+
+**Hover-Deutsch** is a Firefox add-on that displays the definitions and translations of German word simply by hovering over them. This information is retrieved from the PONS Dictionary API and displayed in a tooltip.
+
+## Table of Contents
+ 
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Settings](#settings)
+- [Limitations](#limitations)
+- [Implementation Overview](#implementation-overview)
+- [More Information](#more-information)
+
 
 ## Features
+
 - **Word Detection:** Automatically detects the word under the cursor.
 - **API Query:** Queries the PONS German->English dictionary.
-- **Visual Interface:** Displays the definitions and translations
+- **Visual Interface:** Displays the definitions and translations.
+- **Customization:** Tooltip colors, detection mode, translationn display, and hide delay are configurable from the options page.
 
 ## Project Structure
+
 ```text
 .
 ├── manifest.json      # Extension configuration (description, scripts, permissions...)
@@ -25,6 +40,7 @@ tooltip
     ```bash
     git clone https://github.com/ShImM0/Hover-Deutsch.git && cd Hover-Deutsch
     ```
+
 2. **Install `web-ext`, a Node-based application**  
 
     With brew using:
@@ -39,22 +55,45 @@ tooltip
     ```bash
     pacman -S web-ext
     ```
+
 3. **Get a PONS API Key**
-    - Visit [PONS Dictionary API](https://en.pons.com/p/online-dictionary/developers/api) and generate an API key after making an account. Then, open your profile and copy the secret (first field in Show Secret).
+
+    - Visit [PONS Dictionary API](https://en.pons.com/p/online-dictionary/developers/api) and generate an API key after making an account. Then, open your profile and copy the secret (the first field in "Show Secret").
     - Replace the placeholder in `background.js`:  
-`"X-Secret": "YOUR API KEY"` with the key.
+    `"X-Secret": "YOUR API KEY"` with the key.
 
 5. **Run the extension**  
+
     From the project directory, execute  
     ```bash
     web-ext run
     ```
     This starts Firefox and loads the extension temporarily in the browser.
 
+
+## Settings
+ 
+The options page (opened from the toolbar popup, or via `about:addons`) lets you configure:
+ 
+| Setting             | Description                                                           | Default   |
+|----------------------|------------------------------------------------------------------------|-----------|
+| Detection mode        | Look up the word on **hover** or on **click**                          | Hover     |
+| Show translations     | Append the English translation next to each German sense               | Off       |
+| Tooltip background    | Background color of the tooltip                                        | `#000000` |
+| Tooltip font color    | Text color of the tooltip                                              | `#ffffff` |
+| Delay                 | Milliseconds before the tooltip hides after the cursor leaves a word   | `500`     |
+ 
+All settings are persisted with `browser.storage.local` and applied live, without needing to reload the page.
+
+
+
 ## Limitations
+
 The free PONS API is limited to 1,000 requests per month, enough for several hours of use.
 
 ## Implementation overview
+
+
 > ### manifest.json
 - `"manifest_version"` specifies the version that this extension specifies
 - `"content_scripts"` loads the scripts into web pages whose URL matches a pattern, in this case "<all_urls>", which allows the script "hoverDeutsch.js" to be loaded in any page.
