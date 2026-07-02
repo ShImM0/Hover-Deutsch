@@ -5,7 +5,7 @@
  */
 
 browser.runtime.onMessage.addListener(async (msg) => {
-  // Input with {type: "lookup", word: "word"}
+  // Input with {type: "lookup", word, translations}
   if (msg.type !== "lookup") return;
 
   // encodeURIComponent ensures special chars are safely encoded
@@ -78,7 +78,9 @@ function parseQuery(response, showTranslations) {
   return resultString;
 }
 
-// Formatted parsing
+/*
+* Formatted parsing, shows translations only if the query requests it
+*/
 function parseEntry(hitEntry, showTranslations) {
   let out = "";
 

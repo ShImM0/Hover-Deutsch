@@ -11,7 +11,13 @@
 .
 ├── manifest.json      # Extension configuration (description, scripts, permissions...)
 ├── background.js      # Handles API requests and formats the response
-└── hoverDeutsch.js    # Detects words and displays the tooltip
+├── options.js         # Adds and manages the event listeners for the options 
+├── options.html       # Settings interface
+├── options.css        # Stylesheet for the settings
+├── popup.js           # Its event listener opens the option page
+├── popup.html         # Popup interface that opens the option page
+└── hoverDeutsch.js    # Detects words and displays the 
+tooltip
 ``` 
 
 ## Installation
@@ -66,7 +72,7 @@ The free PONS API is limited to 1,000 requests per month, enough for several hou
 
 > ### background.js
 - A message listener waits for the lookup request, sends the request with `fetch()` using the API key and parses the response in JSON to a JavaScript object using `await res.json()`.
-- The function `parseQuery()` returns the string in a YAML-like string, and uses `clean()` to remove HTML tags.
+- The function `parseQuery()` returns the string in a YAML-like string, showing translations if requested, and uses `clean()` to remove HTML tags. 
 
 
 ## More information
