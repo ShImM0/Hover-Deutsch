@@ -33,7 +33,7 @@ browser.runtime.onMessage.addListener(async (msg) => {
       };
     }
 
-    const parsed = parseQuery(text);
+    const parsed = parseQuery(text, msg.translations);
     return parsed;
 
   } catch (err) {
@@ -51,18 +51,15 @@ browser.runtime.onMessage.addListener(async (msg) => {
 /*
  * Returns the string in a YAML-like string, using clean()
  */
-function parseQuery(response) {
-  //let result = [];
+function parseQuery(response, showTranslations) {
   let resultString = "";
   for (const languageDir of response) {
     resultString += (`language: ${languageDir.lang}\n`);
 
-    let translations = [];
-    let entries = [];
     for (const hit of languageDir.hits) {
       switch (hit.type) {
         case "entry":
-          const entry = parseEntry(hit);
+          const entry = parseEntry(hit, showTranslations);
           resultString += entry;
           break;
 
@@ -82,7 +79,7 @@ function parseQuery(response) {
 }
 
 // Formatted parsing
-function parseEntry(hitEntry) {
+function parseEntry(hitEntry, showTranslations) {
   let out = "";
 
   for (const rom of hitEntry.roms) {
@@ -94,8 +91,9 @@ function parseEntry(hitEntry) {
       out += `       ${clean(arab.header)}\n`;
 
       for (const tr of arab.translations) {
-        //out += `          - ${clean(tr.source)}\n`;
-        out += `          - ${clean(tr.source)} -> ${clean(tr.target)}\n`;
+
+        if(showTranslations) out += `          - ${clean(tr.source)} -> ${clean(tr.target)}\n`;
+        else out += `          - ${clean(tr.source)}\n`;
       }
     }
 

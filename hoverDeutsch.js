@@ -2,6 +2,9 @@
 // Initialise variables
 let lastWord = "";
 let hideTimeout = null;
+let translations = false;
+let delay = 500;
+let detectionMode = "hover";
 
 let tooltip = document.createElement("div");
 tooltip.style.position = "fixed";
@@ -18,17 +21,42 @@ tooltip.style.textAlign = "left";
 tooltip.style.whiteSpace = "pre-wrap";
 document.body.appendChild(tooltip);
 
-document.addEventListener("mousemove", process);
+//document.addEventListener("mousemove", process);
 
+function setDetectionMode(mode){
+  document.removeEventListener("mousemove", process);
+  document.removeEventListener("click", process);
+ 
+  detectionMode = (mode === "click") ? "click" : "hover";
+ 
+  if (detectionMode === "click") {
+    document.addEventListener("click", process);
+  } else {
+    document.addEventListener("mousemove", process);
+  }
+
+}
+
+setDetectionMode("hover");
 
 (async () => {
-  const settings = await browser.storage.local.get(["bcolor", "fcolor"]);
+  const settings = await browser.storage.local.get(["bcolor", "fcolor", "translations", "delay", "detection"]);
 
   if (settings.bcolor)
       tooltip.style.background = settings.bcolor;
 
   if (settings.fcolor)
       tooltip.style.color = settings.fcolor;
+
+  if(settings.translations)
+      translations = settings.translations;
+
+  if(settings.delay)
+      delay = settings.delay;
+
+  if(settings.detection)
+      setDetectionMode(settings.detection);
+
 })();
 
 browser.storage.onChanged.addListener((changes) => {
@@ -37,6 +65,15 @@ browser.storage.onChanged.addListener((changes) => {
 
     if (changes.fcolor)
         tooltip.style.color = changes.fcolor.newValue;
+
+    if(changes.translations)
+        translations = changes.translations.newValue;
+    
+    if(changes.delay)
+        delay = changes.delay.newValue;
+    
+    if(changes.detection)
+        setDetectionMode(changes.detection.newValue);
 });
 
 
@@ -51,7 +88,7 @@ async function process(e) {
     clearTimeout(hideTimeout);
     hideTimeout = setTimeout(() => {
       tooltip.style.display = "none";
-    }, 500);
+    }, delay);
     return;
   }
 
@@ -69,8 +106,7 @@ async function process(e) {
 
   try {
     // The background script has a Message Listener (browser.runtime.onMessage.addListener())
-    const germanInfo = word + word;
-    //await getMeaningOfWord(word);
+    const germanInfo = await getMeaningOfWord(word);
 
     displayTooltipText(germanInfo, e.clientX, e.clientY);
 
@@ -145,7 +181,8 @@ async function getMeaningOfWord(word) {
   if (!word) return;
   const germanInfo = await browser.runtime.sendMessage({
     type: "lookup",
-    word
+    word,
+    translations
   });
 
   return germanInfo;
