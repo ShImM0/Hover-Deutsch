@@ -83,7 +83,7 @@ The options page (opened from the toolbar popup, or via `about:addons`) lets you
 | Tooltip font color    | Text color of the tooltip                                              | `#ffffff` |
 | Delay                 | Milliseconds before the tooltip hides after the cursor leaves a word   | `500`     |
  
-All settings are persisted with `browser.storage.local` and applied live, without needing to reload the page.
+All settings persist in `browser.storage.local` and are applied live, without needing to reload the page.
 
 
 
@@ -94,25 +94,33 @@ The free PONS API is limited to 1,000 requests per month, enough for several hou
 ## Implementation overview
 
 
-> ### manifest.json
-- `"manifest_version"` specifies the version that this extension specifies
-- `"content_scripts"` loads the scripts into web pages whose URL matches a pattern, in this case "<all_urls>", which allows the script "hoverDeutsch.js" to be loaded in any page.
+### `manifest.json`
+- `"manifest_version"` specifies the version that this extension uses.
+- `"content_scripts"` loads `hoverDeutsch.js` into web pages whose URL matches a pattern, in this case "<all_urls>", which allows the script "hoverDeutsch.js" to be loaded in any page.
 - `"background"` includes the background scripts, where the code that needs to maintain a long-term state or long-term operations are put.
+- `"options_ui"` registers `options.html` as the settings page, opened in a new tab.
 - `"permissions"` includes:
-    - the `"activeTab"` permission, which grants extra privileges for the active tab only
-    - patterns which identifies a group of URLs for which the extension is requesting extra privileges, such as "https://api.pons.com/*".
+    - `"activeTab"`, granting extra privileges for the active tab only.
+    - `"storage"`, used to persist user settings.
+    - patterns, which identifies a group of URLs for which the extension is requesting extra privileges, such as "https://api.pons.com/*".
 
-> ### hoverDeutsch.js
-- Mouse movement triggers the `process()` function:
-    - detects the word using `getWord(e)`
-    - sends the word to the background script using `getMeaningOfWord)`
-    - waits for the returned result
-    - displays the result in the tooltip using `(displayTooltipText(text, x, y)`.
 
-> ### background.js
-- A message listener waits for the lookup request, sends the request with `fetch()` using the API key and parses the response in JSON to a JavaScript object using `await res.json()`.
-- The function `parseQuery()` returns the string in a YAML-like string, showing translations if requested, and uses `clean()` to remove HTML tags. 
+### `hoverDeutsch.js`
+- Loads stored settings on startup and reacts live to changes via `browser.storage.onChanged`.
+- `setDetectionMode(mode)` switches between listening on `mousemove` (hover) or `click`.
+- Each event triggers the `process(e)` function:
+    - detects the word using `getWord(e)`.
+    - sends the word to the background script via `getMeaningOfWord(word)`.
+    - waits for the parsed result.
+    - displays the result in the tooltip using `displayTooltipText(text, x, y)`.
 
+### `background.js`
+- A message listener (`browser.runtime.onMessage`) waits for the lookup request.
+- Sends the request with `fetch()` using the API key and parses the response in JSON to a JavaScript object using `await res.json()`.
+- `parseQuery()` converts the response into a YAML-like string (showing translations if requested), using `clean()` to remove HTML tags. 
+
+### `options.js`
+- Reads and writes each setting (colors, translations toggle, delay, detection mode) to `browser.storage.local` whenever its corresponding control changes.
 
 ## More information
 For more information about extension development, read [Firefox's Extension Basics](https://extensionworkshop.com/extension-basics/) and [Firefox Extension Workshop](https://extensionworkshop.com/).
