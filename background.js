@@ -94,7 +94,7 @@ function parseEntry(hitEntry, showTranslations) {
 
       for (const tr of arab.translations) {
 
-        if(showTranslations) out += `          - ${clean(tr.source)} -> ${clean(tr.target)}\n`;
+        if (showTranslations) out += `          - ${clean(tr.source)} -> ${clean(tr.target)}\n`;
         else out += `          - ${clean(tr.source)}\n`;
       }
     }

@@ -1,5 +1,6 @@
 
 // Initialise variables
+
 let lastWord = "";
 let hideTimeout = null;
 let translations = false;
@@ -23,12 +24,12 @@ tooltip.style.textAlign = "left";
 tooltip.style.whiteSpace = "pre-wrap";
 document.body.appendChild(tooltip);
 
-function setDetectionMode(mode){
+function setDetectionMode(mode) {
   document.removeEventListener("mousemove", process);
   document.removeEventListener("click", process);
- 
+
   detectionMode = (mode === "click") ? "click" : "hover";
- 
+
   if (detectionMode === "click") {
     document.addEventListener("click", process);
   } else {
@@ -46,37 +47,37 @@ setDetectionMode("hover");
   const settings = await browser.storage.local.get(["bcolor", "fcolor", "translations", "delay", "detection"]);
 
   if (settings.bcolor)
-      tooltip.style.background = settings.bcolor;
+    tooltip.style.background = settings.bcolor;
 
   if (settings.fcolor)
-      tooltip.style.color = settings.fcolor;
+    tooltip.style.color = settings.fcolor;
 
-  if(settings.translations)
-      translations = settings.translations;
+  if (settings.translations)
+    translations = settings.translations;
 
-  if(settings.delay)
-      delay = settings.delay;
+  if (settings.delay)
+    delay = settings.delay;
 
-  if(settings.detection)
-      setDetectionMode(settings.detection);
+  if (settings.detection)
+    setDetectionMode(settings.detection);
 
 })();
 
 browser.storage.onChanged.addListener((changes) => {
-    if (changes.bcolor)
-        tooltip.style.background = changes.bcolor.newValue;
+  if (changes.bcolor)
+    tooltip.style.background = changes.bcolor.newValue;
 
-    if (changes.fcolor)
-        tooltip.style.color = changes.fcolor.newValue;
+  if (changes.fcolor)
+    tooltip.style.color = changes.fcolor.newValue;
 
-    if(changes.translations)
-        translations = changes.translations.newValue;
-    
-    if(changes.delay)
-        delay = changes.delay.newValue;
-    
-    if(changes.detection)
-        setDetectionMode(changes.detection.newValue);
+  if (changes.translations)
+    translations = changes.translations.newValue;
+
+  if (changes.delay)
+    delay = changes.delay.newValue;
+
+  if (changes.detection)
+    setDetectionMode(changes.detection.newValue);
 });
 
 

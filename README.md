@@ -36,6 +36,7 @@ tooltip
 ``` 
 
 ## Installation
+
 1. **Clone the repository**
     ```bash
     git clone https://github.com/ShImM0/Hover-Deutsch.git && cd Hover-Deutsch
@@ -95,6 +96,7 @@ The free PONS API is limited to 1,000 requests per month, enough for several hou
 
 
 ### `manifest.json`
+
 - `"manifest_version"` specifies the version that this extension uses.
 - `"content_scripts"` loads `hoverDeutsch.js` into web pages whose URL matches a pattern, in this case "<all_urls>", which allows the script "hoverDeutsch.js" to be loaded in any page.
 - `"background"` includes the background scripts, where the code that needs to maintain a long-term state or long-term operations are put.
@@ -106,6 +108,7 @@ The free PONS API is limited to 1,000 requests per month, enough for several hou
 
 
 ### `hoverDeutsch.js`
+
 - Loads stored settings on startup and reacts live to changes via `browser.storage.onChanged`.
 - `setDetectionMode(mode)` switches between listening on `mousemove` (hover) or `click`.
 - Each event triggers the `process(e)` function:
@@ -115,12 +118,15 @@ The free PONS API is limited to 1,000 requests per month, enough for several hou
     - displays the result in the tooltip using `displayTooltipText(text, x, y)`.
 
 ### `background.js`
+
 - A message listener (`browser.runtime.onMessage`) waits for the lookup request.
 - Sends the request with `fetch()` using the API key and parses the response in JSON to a JavaScript object using `await res.json()`.
 - `parseQuery()` converts the response into a YAML-like string (showing translations if requested), using `clean()` to remove HTML tags. 
 
 ### `options.js`
+
 - Reads and writes each setting (colors, translations toggle, delay, detection mode) to `browser.storage.local` whenever its corresponding control changes.
 
 ## More information
+
 For more information about extension development, read [Firefox's Extension Basics](https://extensionworkshop.com/extension-basics/) and [Firefox Extension Workshop](https://extensionworkshop.com/).

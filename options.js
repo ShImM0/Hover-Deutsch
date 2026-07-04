@@ -5,33 +5,33 @@ const translations = document.getElementById("translations");
 const delay = document.getElementById("delay");
 const detectionRadios = document.querySelectorAll('input[name="detection"]');
 
+/*
+* Storage functions
+*/
+
 function updateBcolor() {
-  console.log("BCOLOR PICKED:", bcolor.value);
- 
+
   browser.storage.local.set({
     bcolor: bcolor.value
   });
 }
  
 function updateFcolor() {
-  console.log("FCOLOR PICKED:", fcolor.value);
- 
+
   browser.storage.local.set({
     fcolor: fcolor.value
   });
 }
 
 function updateTranslations(){
-  console.log("TRANSLATIONS:", translations.checked);
- 
+
   browser.storage.local.set({
     translations: translations.checked
   });
 }
  
 function updateDelay(){
-  console.log("DELAY:", delay.value);
- 
+
   browser.storage.local.set({
     delay: delay.value
   });
@@ -40,14 +40,16 @@ function updateDelay(){
 function updateDetection() {
   const selected = document.querySelector('input[name="detection"]:checked');
   if (!selected) return;
- 
-  console.log("DETECTION:", selected.value);
- 
+
   browser.storage.local.set({
     detection: selected.value
   });
 }
 
+
+/*
+* Event listeners
+*/
 
 bcolor.addEventListener("change", updateBcolor);
 fcolor.addEventListener("change", updateFcolor);
